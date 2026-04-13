@@ -122,7 +122,9 @@ htop_SOURCES = \
 # Enable extra warnings during personal builds to catch potential issues
 # Added -Wshadow to catch variable shadowing bugs, and -Wformat=2 for
 # stricter printf/scanf format string checking.
-WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2
+# Also added -Wconversion to catch implicit type conversion issues that
+# could lead to subtle bugs (e.g. int -> char truncation).
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wconversion
 
 htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
@@ -155,12 +157,4 @@ htop_SOURCES += \
 	linux/SystemdMeter.h \
 	linux/ZramMeter.c \
 	linux/ZramMeter.h \
-	linux/ZswapMeter.c \
-	linux/ZswapMeter.h
-endif
-
-if HTOP_FREEBSD
-htop_SOURCES += \
-	freebsd/FreeBSDMachine.c \
-	freebsd/FreeBSDMachine.h \
-	freebsd/FreeB
+	linux/ZswapMet
