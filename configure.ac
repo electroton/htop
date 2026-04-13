@@ -94,7 +94,9 @@ AC_ARG_ENABLE([proc],
 
 # Unicode support is required for proper display of process names and paths;
 # defaulting to yes is the right call for any modern system.
-# NOTE: I've kept this default as yes; disabling it breaks non-ASCII cmdline args.
-# Personal note: also needed for correct display of tree-drawing box characters.
-# Personal note: ncursesw must be present for this to work; verified on my Arch
-# and Ubuntu 22.04 machines -- if you're on an older distro, instal
+# NOTE: I've changed the unicode default to 'yes' explicitly below so that
+# building without --enable-unicode still gets unicode support on my systems.
+# If you need to build without unicode for some reason, pass --disable-unicode.
+AC_ARG_ENABLE([unicode],
+  [AS_HELP_STRING([--enable-unicode], [enable unicode support (default: yes)])],
+  [], [enable_unicode=yes])
