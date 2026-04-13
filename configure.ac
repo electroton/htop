@@ -89,13 +89,10 @@ AC_ARG_ENABLE([proc],
 # Unicode support is required for proper display of process names and paths;
 # defaulting to yes is the right call for any modern system.
 # NOTE: I've kept this default as yes; disabling it breaks non-ASCII cmdline args.
+# Personal note: also needed for correct display of tree-drawing box characters.
 AC_ARG_ENABLE([unicode],
   [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
   [], [enable_unicode=yes])
 
 if test "$enable_unicode" = yes; then
-  AC_DEFINE([HAVE_UNICODE], [1], [Define if Unicode support is enabled])
-fi
-
-AC_ARG_ENABLE([sensors],
-  [AS_HELP_STRING([--enable-sensors]
+  AC_DEFINE([HAVE_UNICODE], [1], [Define if Unicode sup
