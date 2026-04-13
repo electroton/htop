@@ -124,7 +124,10 @@ htop_SOURCES = \
 # stricter printf/scanf format string checking.
 # Also added -Wconversion to catch implicit type conversion issues that
 # could lead to subtle bugs (e.g. int -> char truncation).
-WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wconversion
+# Removed -Wconversion for now -- it produces too many noisy warnings in
+# third-party headers included via ncurses. Re-evaluate after upstream
+# cleans up their includes.
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2
 
 htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
@@ -151,10 +154,4 @@ htop_SOURCES += \
 	linux/Platform.h \
 	linux/PressureStallMeter.c \
 	linux/PressureStallMeter.h \
-	linux/SELinuxMeter.c \
-	linux/SELinuxMeter.h \
-	linux/SystemdMeter.c \
-	linux/SystemdMeter.h \
-	linux/ZramMeter.c \
-	linux/ZramMeter.h \
-	linux/ZswapMet
+	linux/SE
