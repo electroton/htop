@@ -129,7 +129,9 @@ htop_SOURCES = \
 # cleans up their includes.
 # Added -Wdouble-promotion to catch unintentional float->double promotions
 # which can silently impact performance on platforms without an FPU.
-WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wdouble-promotion
+# Added -Wnull-dereference to catch potential null pointer dereferences at
+# compile time where the compiler can statically determine the issue.
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference
 
 htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
@@ -143,11 +145,4 @@ htop_SOURCES += \
 	linux/GenericCPUMeter.c \
 	linux/GenericCPUMeter.h \
 	linux/IOPriorityPanel.c \
-	linux/IOPriorityPanel.h \
-	linux/LibSensors.c \
-	linux/LibSensors.h \
-	linux/LinuxMachine.c \
-	linux/LinuxMachine.h \
-	linux/LinuxProcess.c \
-	linux/LinuxProcess.h \
-	linux/L
+	linux/IOPri
