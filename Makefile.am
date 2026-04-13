@@ -1,4 +1,5 @@
 # Makefile.am - automake input for htop
+# Personal fork: added WARN_CFLAGS for stricter compilation warnings
 
 AUTOMAKE_OPTIONS = foreign
 
@@ -118,7 +119,10 @@ htop_SOURCES = \
 	XUtils.h \
 	main.c
 
-htop_CFLAGS = @CFLAGS@
+# Enable extra warnings during personal builds to catch potential issues
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter
+
+htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
 
 if HTOP_LINUX
@@ -165,98 +169,4 @@ htop_SOURCES += \
 	freebsd/Platform.h \
 	bsd/BSDProcess.c \
 	bsd/BSDProcess.h \
-	bsd/BSDProcessTable.c \
-	bsd/BSDProcessTable.h \
-	generic/CPUMeter.c \
-	generic/CPUMeter.h
-endif
-
-if HTOP_DARWIN
-htop_SOURCES += \
-	darwin/DarwinMachine.c \
-	darwin/DarwinMachine.h \
-	darwin/DarwinProcess.c \
-	darwin/DarwinProcess.h \
-	darwin/DarwinProcessTable.c \
-	darwin/DarwinProcessTable.h \
-	darwin/Platform.c \
-	darwin/Platform.h \
-	bsd/BSDProcess.c \
-	bsd/BSDProcess.h \
-	bsd/BSDProcessTable.c \
-	bsd/BSDProcessTable.h \
-	generic/CPUMeter.c \
-	generic/CPUMeter.h
-endif
-
-if HTOP_OPENBSD
-htop_SOURCES += \
-	openbsd/OpenBSDMachine.c \
-	openbsd/OpenBSDMachine.h \
-	openbsd/OpenBSDProcess.c \
-	openbsd/OpenBSDProcess.h \
-	openbsd/OpenBSDProcessTable.c \
-	openbsd/OpenBSDProcessTable.h \
-	openbsd/Platform.c \
-	openbsd/Platform.h \
-	bsd/BSDProcess.c \
-	bsd/BSDProcess.h \
-	bsd/BSDProcessTable.c \
-	bsd/BSDProcessTable.h \
-	generic/CPUMeter.c \
-	generic/CPUMeter.h
-endif
-
-if HTOP_NETBSD
-htop_SOURCES += \
-	netbsd/NetBSDMachine.c \
-	netbsd/NetBSDMachine.h \
-	netbsd/NetBSDProcess.c \
-	netbsd/NetBSDProcess.h \
-	netbsd/NetBSDProcessTable.c \
-	netbsd/NetBSDProcessTable.h \
-	netbsd/Platform.c \
-	netbsd/Platform.h \
-	bsd/BSDProcess.c \
-	bsd/BSDProcess.h \
-	bsd/BSDProcessTable.c \
-	bsd/BSDProcessTable.h \
-	generic/CPUMeter.c \
-	generic/CPUMeter.h
-endif
-
-if HTOP_SOLARIS
-htop_SOURCES += \
-	solaris/Platform.c \
-	solaris/Platform.h \
-	solaris/SolarisMachine.c \
-	solaris/SolarisMachine.h \
-	solaris/SolarisProcess.c \
-	solaris/SolarisProcess.h \
-	solaris/SolarisProcessTable.c \
-	solaris/SolarisProcessTable.h \
-	generic/CPUMeter.c \
-	generic/CPUMeter.h
-endif
-
-dist_man_MANS = htop.1
-
-APPLICATION_NAME = htop
-
-applicationsdir = $(datadir)/applications
-dist_applications_DATA = htop.desktop
-
-pixmapdir = $(datadir)/pixmaps
-dist_pixmap_DATA = htop.png
-
-iconsdir = $(datadir)/icons/hicolor/scalable/apps
-dist_icons_DATA = htop.svg
-
-EXTRA_DIST = \
-	htop.desktop \
-	htop.png \
-	htop.svg \
-	htop.1
-
-clean-local:
-	-rm -rf autom4te.cache
+	bsd/BSDProcessT
