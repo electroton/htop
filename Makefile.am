@@ -133,4 +133,5 @@ htop_SOURCES = \
 # compile time where the compiler can statically determine the issue.
 # Added -Wundef to catch uses of undefined macros in #if conditions, which
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
+# Fixed truncated flag: completed -Wdouble-promotion (was cut off as -Wd).
 WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef
