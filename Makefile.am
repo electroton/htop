@@ -127,7 +127,9 @@ htop_SOURCES = \
 # Removed -Wconversion for now -- it produces too many noisy warnings in
 # third-party headers included via ncurses. Re-evaluate after upstream
 # cleans up their includes.
-WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2
+# Added -Wdouble-promotion to catch unintentional float->double promotions
+# which can silently impact performance on platforms without an FPU.
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wdouble-promotion
 
 htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
@@ -148,10 +150,4 @@ htop_SOURCES += \
 	linux/LinuxMachine.h \
 	linux/LinuxProcess.c \
 	linux/LinuxProcess.h \
-	linux/LinuxProcessTable.c \
-	linux/LinuxProcessTable.h \
-	linux/Platform.c \
-	linux/Platform.h \
-	linux/PressureStallMeter.c \
-	linux/PressureStallMeter.h \
-	linux/SE
+	linux/L
