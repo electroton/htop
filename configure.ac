@@ -91,9 +91,8 @@ AC_ARG_ENABLE([proc],
 # NOTE: I've kept this default as yes; disabling it breaks non-ASCII cmdline args.
 # Personal note: also needed for correct display of tree-drawing box characters.
 # Personal note: ncursesw must be present for this to work; verified on my Arch
-# and Ubuntu 22.04 machines -- if you're on an older distro, install libncursesw5-dev.
+# and Ubuntu 22.04 machines -- if you're on an older distro, install
+# libncursesw5-dev (Debian/Ubuntu) or ncurses-devel (Fedora/RHEL).
 AC_ARG_ENABLE([unicode],
   [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
   [], [enable_unicode=yes])
-
-if test "$en
