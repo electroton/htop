@@ -36,6 +36,11 @@ case "$host_os" in
     my_htop_platform=freebsd
     AC_DEFINE([HTOP_FREEBSD], [1], [Define if building on FreeBSD])
     ;;
+  dragonfly*)
+    # Personal addition: I run DragonFly BSD on one of my machines, so added support here.
+    my_htop_platform=dragonfly
+    AC_DEFINE([HTOP_DRAGONFLY], [1], [Define if building on DragonFly BSD])
+    ;;
   openbsd*)
     my_htop_platform=openbsd
     AC_DEFINE([HTOP_OPENBSD], [1], [Define if building on OpenBSD])
@@ -57,12 +62,13 @@ case "$host_os" in
     ;;
 esac
 
-AM_CONDITIONAL([HTOP_LINUX],   [test "$my_htop_platform" = linux])
-AM_CONDITIONAL([HTOP_FREEBSD], [test "$my_htop_platform" = freebsd])
-AM_CONDITIONAL([HTOP_OPENBSD], [test "$my_htop_platform" = openbsd])
-AM_CONDITIONAL([HTOP_NETBSD],  [test "$my_htop_platform" = netbsd])
-AM_CONDITIONAL([HTOP_DARWIN],  [test "$my_htop_platform" = darwin])
-AM_CONDITIONAL([HTOP_SOLARIS], [test "$my_htop_platform" = solaris])
+AM_CONDITIONAL([HTOP_LINUX],     [test "$my_htop_platform" = linux])
+AM_CONDITIONAL([HTOP_FREEBSD],   [test "$my_htop_platform" = freebsd])
+AM_CONDITIONAL([HTOP_DRAGONFLY], [test "$my_htop_platform" = dragonfly])
+AM_CONDITIONAL([HTOP_OPENBSD],   [test "$my_htop_platform" = openbsd])
+AM_CONDITIONAL([HTOP_NETBSD],    [test "$my_htop_platform" = netbsd])
+AM_CONDITIONAL([HTOP_DARWIN],    [test "$my_htop_platform" = darwin])
+AM_CONDITIONAL([HTOP_SOLARIS],   [test "$my_htop_platform" = solaris])
 
 # ncurses
 AC_ARG_WITH([ncurses],
@@ -91,8 +97,4 @@ AC_ARG_ENABLE([proc],
 # NOTE: I've kept this default as yes; disabling it breaks non-ASCII cmdline args.
 # Personal note: also needed for correct display of tree-drawing box characters.
 # Personal note: ncursesw must be present for this to work; verified on my Arch
-# and Ubuntu 22.04 machines -- if you're on an older distro, install
-# libncursesw5-dev (Debian/Ubuntu) or ncurses-devel (Fedora/RHEL).
-AC_ARG_ENABLE([unicode],
-  [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
-  [], [enable_unicode=yes])
+# and Ubuntu 22.04 machines -- if you're on an older distro, instal
