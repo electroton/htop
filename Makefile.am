@@ -120,7 +120,9 @@ htop_SOURCES = \
 	main.c
 
 # Enable extra warnings during personal builds to catch potential issues
-WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter
+# Added -Wshadow to catch variable shadowing bugs, and -Wformat=2 for
+# stricter printf/scanf format string checking.
+WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2
 
 htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
 htop_LDADD = @LDFLAGS@ @LIBS@
@@ -161,12 +163,4 @@ if HTOP_FREEBSD
 htop_SOURCES += \
 	freebsd/FreeBSDMachine.c \
 	freebsd/FreeBSDMachine.h \
-	freebsd/FreeBSDProcess.c \
-	freebsd/FreeBSDProcess.h \
-	freebsd/FreeBSDProcessTable.c \
-	freebsd/FreeBSDProcessTable.h \
-	freebsd/Platform.c \
-	freebsd/Platform.h \
-	bsd/BSDProcess.c \
-	bsd/BSDProcess.h \
-	bsd/BSDProcessT
+	freebsd/FreeB
