@@ -134,10 +134,3 @@ htop_SOURCES = \
 # Added -Wundef to catch uses of undefined macros in #if conditions, which
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
 WARN_CFLAGS = -Wall -Wextra -Wno-unused-parameter -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef
-
-htop_CFLAGS = @CFLAGS@ $(WARN_CFLAGS)
-htop_LDADD = @LDFLAGS@ @LIBS@
-
-if HTOP_LINUX
-htop_SOURCES += \
-	linux/CGroupUt
