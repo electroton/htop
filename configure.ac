@@ -92,7 +92,7 @@ AC_ARG_ENABLE([proc],
 # Personal note: also needed for correct display of tree-drawing box characters.
 # Personal note: ncursesw must be present for this to work; verified on my Arch
 # and Ubuntu 22.04 machines -- if you're on an older distro, install
-# libncursesw5-dev (Debian/Ubuntu) or ncurses-devel (Fedora/RHEL) first.
+# libncursesw5-dev (Debian/Ubuntu) or ncurses-devel (Fedora/RHEL).
 AC_ARG_ENABLE([unicode],
-  [AS_HELP_STRING([--enable-unicode], [enable unicode support (default: yes)])],
+  [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
   [], [enable_unicode=yes])
