@@ -86,6 +86,8 @@ AC_ARG_ENABLE([proc],
   [AS_HELP_STRING([--enable-proc], [use Linux /proc filesystem (default: yes on Linux)])],
   [], [enable_proc=auto])
 
+# Unicode support is required for proper display of process names and paths;
+# defaulting to yes is the right call for any modern system.
 AC_ARG_ENABLE([unicode],
   [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
   [], [enable_unicode=yes])
@@ -99,22 +101,4 @@ AC_ARG_ENABLE([sensors],
   [], [enable_sensors=auto])
 
 if test "$enable_sensors" != no; then
-  AC_CHECK_LIB([sensors], [sensors_init],
-    [AC_DEFINE([HAVE_SENSORS], [1], [Define if libsensors is available])
-     SENSORS_LIBS="-lsensors"],
-    [if test "$enable_sensors" = yes; then
-       AC_MSG_ERROR([libsensors not found])
-     fi])
-fi
-
-AC_SUBST([SENSORS_LIBS])
-
-AC_CONFIG_FILES([Makefile])
-AC_OUTPUT
-
-AC_MSG_RESULT([
-  htop $VERSION
-  Platform:   $my_htop_platform
-  Unicode:    $enable_unicode
-  Sensors:    $enable_sensors
-])
+  AC_CHECK_LIB([senso
