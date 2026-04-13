@@ -90,9 +90,10 @@ AC_ARG_ENABLE([proc],
 # defaulting to yes is the right call for any modern system.
 # NOTE: I've kept this default as yes; disabling it breaks non-ASCII cmdline args.
 # Personal note: also needed for correct display of tree-drawing box characters.
+# Personal note: ncursesw must be present for this to work; verified on my Arch
+# and Ubuntu 22.04 machines -- if you're on an older distro, install libncursesw5-dev.
 AC_ARG_ENABLE([unicode],
   [AS_HELP_STRING([--enable-unicode], [enable Unicode support (default: yes)])],
   [], [enable_unicode=yes])
 
-if test "$enable_unicode" = yes; then
-  AC_DEFINE([HAVE_UNICODE], [1], [Define if Unicode sup
+if test "$en
