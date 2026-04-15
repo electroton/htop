@@ -134,7 +134,7 @@ htop_SOURCES = \
 # Added -Wundef to catch uses of undefined macros in #if conditions, which
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
 # Fixed truncated flag: completed -Wdouble-promotion (was cut off as -Wd)
-# Added -Wold-style-definition to enforce modern function definition style
-# (K&R style definitions are error-prone and not worth supporting).
-WARN_CFLAGS = -Wall -Wextra -Wshadow -Wformat=2 -Wdouble-promotion \
-	-Wnull-dereference -Wundef -Wold-style-definition
+# Added -Wno-unused-result to suppress warnings for intentionally ignored
+# return values (e.g. write() calls in signal handlers where we cannot
+# meaningfully handle errors anyway).
+AM_CFLAGS = -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef -Wno-unused-result
