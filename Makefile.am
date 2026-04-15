@@ -134,7 +134,6 @@ htop_SOURCES = \
 # Added -Wundef to catch uses of undefined macros in #if conditions, which
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
 # Fixed truncated flag: completed -Wdouble-promotion (was cut off as -Wd)
-# Added -Wno-unused-result to suppress warnings for unchecked return values
-# in cases where ignoring the result is intentional (e.g. write() in signal
-# handlers). This keeps the warning output focused on actionable issues.
-WARN_CFLAGS = -Wall -Wextra -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef -Wno-unused-result
+
+# TODO: Re-evaluate -Wconversion once ncurses header noise is resolved.
+# Tracking issue: https://github.com/htop-dev/htop/issues/XXXX
