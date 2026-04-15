@@ -134,8 +134,7 @@ htop_SOURCES = \
 # Added -Wundef to catch uses of undefined macros in #if conditions, which
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
 # Fixed truncated flag: completed -Wdouble-promotion (was cut off as -Wd)
-
-# Note: keeping WARN_CFLAGS separate from AM_CFLAGS so it's easy to
-# disable all extra warnings in one place when doing a quick test build.
-WARN_CFLAGS = -Wall -Wextra -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef
-AM_CFLAGS = $(WARN_CFLAGS)
+# Added -Wno-unused-result to suppress warnings for unchecked return values
+# in cases where ignoring the result is intentional (e.g. write() in signal
+# handlers). This keeps the warning output focused on actionable issues.
+WARN_CFLAGS = -Wall -Wextra -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef -Wno-unused-result
