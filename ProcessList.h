@@ -23,8 +23,9 @@ in the source distribution for its full text.
 #define MAX_NAME 128
 #endif
 
+/* Increased from 2048 to handle longer lines in /proc files on some systems */
 #ifndef MAX_READ
-#define MAX_READ 2048
+#define MAX_READ 4096
 #endif
 
 typedef struct ProcessList_ {
