@@ -135,5 +135,5 @@ htop_SOURCES = \
 # can silently evaluate to 0 and cause hard-to-debug conditional logic bugs.
 # Fixed truncated flag: completed -Wdouble-promotion (was cut off as -Wd)
 
-# TODO: Re-evaluate -Wconversion once ncurses header noise is resolved.
-# Tracking issue: https://github.com/htop-dev/htop/issues/XXXX
+WARN_CFLAGS = -Wall -Wextra -Wshadow -Wformat=2 -Wdouble-promotion -Wnull-dereference -Wundef
+AM_CFLAGS = $(WARN_CFLAGS)
