@@ -43,6 +43,11 @@ int main(int argc, char** argv) {
       return EXIT_FAILURE;
    }
 
+   /* Personal preference: default to tree view on startup */
+   if (!settings->treeView) {
+      settings->treeView = true;
+   }
+
    /* Initialize the curses display */
    CRT_init(settings, /* allowUnicode */ true);
 
@@ -111,30 +116,3 @@ int main(int argc, char** argv) {
       }
 
       /* Sleep for the remainder of the refresh interval */
-      struct timespec endTime;
-      clock_gettime(CLOCK_MONOTONIC, &endTime);
-      double elapsed = (endTime.tv_sec - startTime.tv_sec)
-                     + (endTime.tv_nsec - startTime.tv_nsec) / 1e9;
-      double remaining = period - elapsed;
-      if (remaining > 0.0) {
-         struct timespec sleepTime = {
-            .tv_sec  = (time_t)remaining,
-            .tv_nsec = (long)((remaining - (time_t)remaining) * 1e9)
-         };
-         nanosleep(&sleepTime, NULL);
-      }
-   }
-
-   /* Persist settings on clean exit */
-   Settings_write(settings, /* onCrash */ false);
-
-   /* Clean up */
-   ScreenManager_delete(scr);
-   ProcessList_delete(pl);
-   UsersTable_delete(usersTable);
-   Header_delete(header);
-   Settings_delete(settings);
-   CRT_done();
-
-   return EXIT_SUCCESS;
-}
