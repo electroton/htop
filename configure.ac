@@ -94,7 +94,6 @@ AC_ARG_ENABLE([proc],
 
 # Unicode support is required for proper display of process names and paths;
 # defaulting to yes is the right call for any modern system.
-# NOTE: I personally always want unicode enabled, so changed default from auto to yes.
-AC_ARG_ENABLE([unicode],
-  [AS_HELP_STRING([--enable-unicode], [enable unicode support (default: yes)])],
-  [], [enable_unicode=yes])
+# NOTE: I've never had a reason to disable this on any of my machines; leaving
+# the default as-is. If you're on a truly minimal system without wide-char
+# support, pass --disable-unicode explicitly.
